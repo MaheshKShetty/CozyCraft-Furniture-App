@@ -6,4 +6,6 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun LoginScreen(modifier:Modifier = Modifier,navHostController: NavHostController) {
+
+
 }
