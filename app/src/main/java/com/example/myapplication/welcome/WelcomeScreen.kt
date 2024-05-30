@@ -1,6 +1,7 @@
 package com.example.myapplication.welcome
 
 import android.content.Context
+import android.os.Build.VERSION.SDK_INT
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,12 +25,15 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -38,107 +43,99 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import com.example.myapplication.R
 import com.example.myapplication.helper.NavigationItems
-import kotlin.math.absoluteValue
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun WelcomeScreen(modifier: Modifier = Modifier, navHostController: NavHostController) {
 
     val context = LocalContext.current
-    val pagerState = rememberPagerState(pageCount = {
-        3
-    })
+
     Column(
         Modifier.fillMaxHeight(),
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
-        HorizontalPager(state = pagerState) { page ->
-            Column(modifier = Modifier, verticalArrangement = Arrangement.Center) {
+        Card {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.BottomCenter
+            ) {
                 Image(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp),
-                    painter = painterResource(id = if (page == 0) R.drawable.ic_pager1 else if (page == 1) R.drawable.ic_pager2 else R.drawable.ic_pager3),
-                    contentDescription = stringResource(id = R.string.app_name)
+                        .fillMaxSize(),
+                    painter = rememberAsyncImagePainter("https://i.postimg.cc/Nfz2X9dn/furniture-1840463-1920.jpg"),
+                    contentDescription = stringResource(id = R.string.app_name),
+                    contentScale = ContentScale.FillHeight,
                 )
 
-                Text(
-                    text = context.resources.getStringArray(R.array.pager_title)[page.absoluteValue],
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    text = context.resources.getStringArray(R.array.pager_desc)[page.absoluteValue],
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Normal,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
-
-        var isLastItemVisible = pagerState.currentPage == 2
-
-        Row(
-            Modifier
-                .wrapContentHeight()
-                .fillMaxWidth()
-                .padding(bottom = 8.dp, top = 5.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            repeat(pagerState.pageCount) { iteration ->
-                val color =
-                    if (pagerState.currentPage == iteration) Color.DarkGray else Color.LightGray
+                // Add the alpha overlay
                 Box(
                     modifier = Modifier
-                        .padding(2.dp)
-                        .clip(CircleShape)
-                        .background(color)
-                        .size(8.dp)
+                        .fillMaxSize()
+                        .background(color = Color.White.copy(alpha = 0.22f)) // Adjust alpha for desired transparency
                 )
-            }
-        }
-        if (isLastItemVisible) {
-            Row(
-                Modifier
-                    .wrapContentHeight()
-                    .fillMaxWidth()
-                    .width(IntrinsicSize.Min)
-                    .padding(all = 16.dp),
-                horizontalArrangement = Arrangement.Center
 
-            ) {
-                SignUpButton(
-                    text = context.resources.getString(R.string.signUp),
-                    navHostController = navHostController,
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(8.dp)
-                        .wrapContentHeight()
+                Column(
+                    Modifier.fillMaxHeight(),
+                    verticalArrangement = Arrangement.Bottom
+                ) {
+                    Text(
+                        text = context.resources.getStringArray(R.array.pager_title)[0],
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp,0.dp,16.dp,0.dp),
+                        textAlign = TextAlign.Start
+                    )
+                    Text(
+                        text = context.resources.getStringArray(R.array.pager_desc)[0],
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp,0.dp,16.dp,0.dp),
+                        textAlign = TextAlign.Start
+                    )
+                    Row(
+                        Modifier
+                            .wrapContentHeight()
+                            .fillMaxWidth()
+                            .width(IntrinsicSize.Min)
+                            .padding(all = 16.dp),
+                        verticalAlignment = Alignment.Bottom,
+                        horizontalArrangement = Arrangement.Center
 
-                )
-                Spacer(
-                    modifier = Modifier.width(10.dp)
-                )
-                LoginButton(
-                    text = context.resources.getString(R.string.login),
-                    navHostController = navHostController,
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(8.dp)
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                )
+                    ) {
+                        SignUpButton(
+                            text = context.resources.getString(R.string.signUp),
+                            navHostController = navHostController,
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(8.dp)
+                                .wrapContentHeight()
+
+                        )
+                        Spacer(
+                            modifier = Modifier.width(10.dp)
+                        )
+                        LoginButton(
+                            text = context.resources.getString(R.string.login),
+                            navHostController = navHostController,
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(8.dp)
+                                .fillMaxWidth()
+                                .wrapContentHeight()
+                        )
+                    }
+                }
             }
+
         }
+
     }
 
 }

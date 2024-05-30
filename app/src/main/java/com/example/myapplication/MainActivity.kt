@@ -1,6 +1,8 @@
 package com.cap.myapplication
 
+import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
@@ -12,7 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.helper.AppNavHost
 import com.example.myapplication.ui.theme.MyApplicationTheme
@@ -21,6 +25,12 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = Color.Transparent.toArgb()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }
         setContent {
             MyApplicationTheme {
                 Surface(
@@ -40,6 +50,7 @@ class MainActivity : ComponentActivity() {
     }
     
 }
+
 
 @Preview(showBackground = true)
 @Composable
