@@ -20,7 +20,7 @@ fun AppNavHost(
         startDestination = startDestination, navController = navController
     ) {
         composable(NavigationItems.Welcome.route) {
-            WelcomeScreen(modifier = modifier,navHostController = navController)
+            WelcomeScreen(navHostController = navController)
         }
         composable(NavigationItems.Login.route) {
             LoginScreen(modifier = modifier,navHostController = navController)

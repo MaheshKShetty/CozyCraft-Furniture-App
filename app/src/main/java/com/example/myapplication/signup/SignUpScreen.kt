@@ -29,7 +29,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.myapplication.R
 import com.example.myapplication.custom.CustomToolBar
+import com.example.myapplication.ui.theme.Typography
 import com.example.myapplication.ui.theme.lightGrey
+import com.example.myapplication.ui.theme.titleColor
 
 @Composable
 fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostController) {
@@ -46,35 +48,15 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
                 )
             }
         ) { innerPadding ->
-            Row(
-                Modifier
-                    .padding(innerPadding).verticalScroll(state)
-                    .fillMaxWidth()
-                    .weight(0.2f)
-                    .background(color = lightGrey)
-            ) {
-                Column(modifier = modifier.fillMaxSize()) {
-                    Text(
-                        text = context.getString(R.string.signup_desc),
-                        modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp),
-                        fontSize = 16.sp,
-                        color = DarkGray,
-                        textAlign = TextAlign.Start
-                    )
-                }
+            Column(modifier = modifier.fillMaxSize().padding(innerPadding)) {
+                Text(
+                    text = context.getString(R.string.signup_desc),
+                    modifier = Modifier.padding(16.dp),
+                    style = Typography.bodyMedium,
+                    textAlign = TextAlign.Start,
+                    color = titleColor
+                )
             }
-
-            Row(
-                Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-                    .background(color = White, shape = RoundedCornerShape(8.dp)),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
-            ) {
-
-            }
-
         }
     }
 

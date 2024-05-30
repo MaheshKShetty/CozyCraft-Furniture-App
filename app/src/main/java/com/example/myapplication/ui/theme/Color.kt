@@ -11,5 +11,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 val lightGrey = Color(0xFFD3D3D6)
 
-val navTitleColor =  Color(0xFF3D5CFF)
-val navbgColor = lightGrey
+val navTitleColor =  Color(0xFF000000)
+val navbgColor = Color(0xFFFFFFFF)
+
+val titleColor =  Color(0xFF000000)

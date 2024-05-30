@@ -1,29 +1,22 @@
 package com.example.myapplication.welcome
 
 import android.content.Context
-import android.os.Build.VERSION.SDK_INT
+import android.graphics.BitmapFactory
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.FilledTonalButton
@@ -31,7 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -45,10 +37,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.myapplication.R
+import com.example.myapplication.custom.CustomButton
 import com.example.myapplication.helper.NavigationItems
+import com.example.myapplication.ui.theme.Typography
 
 @Composable
-fun WelcomeScreen(modifier: Modifier = Modifier, navHostController: NavHostController) {
+fun WelcomeScreen(navHostController: NavHostController) {
 
     val context = LocalContext.current
 
@@ -64,71 +58,61 @@ fun WelcomeScreen(modifier: Modifier = Modifier, navHostController: NavHostContr
             ) {
                 Image(
                     modifier = Modifier
-                        .fillMaxSize(),
-                    painter = rememberAsyncImagePainter("https://i.postimg.cc/Nfz2X9dn/furniture-1840463-1920.jpg"),
+                        .fillMaxSize().fillMaxHeight(),
+                    painter = painterResource(id = R.drawable.ic_toturial),
                     contentDescription = stringResource(id = R.string.app_name),
                     contentScale = ContentScale.FillHeight,
                 )
-
-                // Add the alpha overlay
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = Color.White.copy(alpha = 0.22f)) // Adjust alpha for desired transparency
-                )
-
                 Column(
-                    Modifier.fillMaxHeight(),
+                    Modifier
+                        .fillMaxHeight()
+                        .padding(0.dp, 0.dp, 0.dp, 18.dp),
                     verticalArrangement = Arrangement.Bottom
                 ) {
                     Text(
-                        text = context.resources.getStringArray(R.array.pager_title)[0],
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
+                        text = context.resources.getString(R.string.welcome_screen_title),
+                        style = Typography.titleLarge,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp,0.dp,16.dp,0.dp),
+                            .padding(16.dp, 0.dp, 16.dp, 0.dp),
                         textAlign = TextAlign.Start
                     )
                     Text(
-                        text = context.resources.getStringArray(R.array.pager_desc)[0],
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.SemiBold,
+                        text = context.resources.getString(R.string.welcome_screen_desc),
+                        style = Typography.bodyLarge,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp,0.dp,16.dp,0.dp),
+                            .padding(16.dp, 0.dp, 16.dp, 0.dp),
                         textAlign = TextAlign.Start
                     )
-                    Row(
-                        Modifier
-                            .wrapContentHeight()
-                            .fillMaxWidth()
-                            .width(IntrinsicSize.Min)
-                            .padding(all = 16.dp),
-                        verticalAlignment = Alignment.Bottom,
-                        horizontalArrangement = Arrangement.Center
 
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(all = 16.dp)
                     ) {
-                        SignUpButton(
+                        CustomButton(
                             text = context.resources.getString(R.string.signUp),
                             navHostController = navHostController,
+                            route = NavigationItems.SignUp.route,
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(8.dp)
-                                .wrapContentHeight()
+                                .wrapContentHeight(),
 
-                        )
+                            )
                         Spacer(
-                            modifier = Modifier.width(10.dp)
+                            modifier = Modifier.weight(0.1f) // Adjust weight for desired spacing
                         )
-                        LoginButton(
+                        CustomButton(
                             text = context.resources.getString(R.string.login),
                             navHostController = navHostController,
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(8.dp)
                                 .fillMaxWidth()
-                                .wrapContentHeight()
+                                .wrapContentHeight(),
+                            route = NavigationItems.Login.route,
                         )
                     }
                 }
@@ -138,41 +122,15 @@ fun WelcomeScreen(modifier: Modifier = Modifier, navHostController: NavHostContr
 
     }
 
+
 }
 
-@Composable
-private fun SignUpButton(text: String, modifier: Modifier, navHostController: NavHostController) {
-    val context = LocalContext.current
-    FilledTonalButton(modifier = modifier, colors =
-    ButtonDefaults.filledTonalButtonColors(
-        containerColor = colorResource(id = R.color.colorBlue),
-        contentColor = colorResource(id = R.color.white)
-    ),
-        onClick = {
-            navHostController.navigate(NavigationItems.SignUp.route)
-        }) {
-        Text(
-            text = text,
-            textAlign = TextAlign.Center,
-            color = colorResource(id = R.color.white),
-            fontSize = 18.sp
-        )
-    }
+fun getImageAspectRatio(context: Context, imageId: Int): Float {
+    val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+    BitmapFactory.decodeResource(context.resources, imageId, options)
+    return options.outWidth.toFloat() / options.outHeight.toFloat()
 }
 
-@Composable
-private fun LoginButton(text: String, modifier: Modifier, navHostController: NavHostController) {
-    val context = LocalContext.current
-    FilledTonalButton(modifier = modifier,
-        colors = ButtonDefaults.filledTonalButtonColors(
-            containerColor = colorResource(id = R.color.white),
-            contentColor = colorResource(id = R.color.colorBlue)
-        ),
-        border = BorderStroke(width = 1.dp, color = colorResource(id = R.color.colorBlue)),
-        onClick = { navHostController.navigate(NavigationItems.Login.route) }) {
-        Text(text = text, textAlign = TextAlign.Center, color = Color.Blue, fontSize = 18.sp)
-    }
-}
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {

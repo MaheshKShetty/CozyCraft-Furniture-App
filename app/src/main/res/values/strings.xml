@@ -6,20 +6,13 @@
     <string name="pager2_desc">Easy and fast learning at \n any time to help you \n improve various skills</string>
     <string name="pager3_desc">Study according to the \n study plan, make study more motivated</string>
     <string name="Skip">Skip</string>
+
     <string name="login">Login</string>
     <string name="signUp">SignUp</string>
-    <string name="signup_desc">Enter your details below &amp; free sign up</string>
+    <string name="signup_desc">Create Your CozyCraft Account | Join the Fun</string>
+    <string name="login_subtitle">CozyCraft Login | Welcome Back</string>
 
+    <string name="welcome_screen_title">Explore, Create, and Be Cozy</string>
+    <string name="welcome_screen_desc">Find Your Cozy Corner with CozyCraft: Unwind and unleash your creativity</string>
 
-    <string-array name="pager_title">
-        <item >"Numerous free trial courses"</item>
-        <item >"Quick and easy learning"</item>
-        <item >"Create your own study plan"</item>
-    </string-array>
-
-    <string-array name="pager_desc">
-        <item >"Free courses for you to \n find your way to learning"</item>
-        <item >"Easy and fast learning at \n any time to help you \n improve various skills"</item>
-        <item >"Study according to the \n study plan, make study more motivated"</item>
-    </string-array>
 </resources>
