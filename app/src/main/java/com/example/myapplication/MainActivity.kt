@@ -25,7 +25,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.statusBarColor = Color.Transparent.toArgb()
         setContent {
             MyApplicationTheme {
                 Surface(
