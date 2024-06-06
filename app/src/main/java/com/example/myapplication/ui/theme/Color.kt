@@ -15,3 +15,9 @@ val navTitleColor =  Color(0xFF000000)
 val navbgColor = Color(0xFFFFFFFF)
 
 val titleColor =  Color(0xFF000000)
+
+
+val textFieldBorderColor =  Color(0xFFD3D3D6)
+val textFieldFocusedColor = Color(0xFF9ECFE0)
+val textFieldErrorColor = Color(0xFFFF0000)
+

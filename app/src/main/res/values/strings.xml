@@ -14,5 +14,6 @@
 
     <string name="welcome_screen_title">Explore, Create, and Be Cozy</string>
     <string name="welcome_screen_desc">Find Your Cozy Corner with CozyCraft: Unwind and unleash your creativity</string>
-
+    <string name="signup_tnc"> By Signing up , you agree to our
+    Terms &amp; Conditions and Privacy Policy</string>
 </resources>
