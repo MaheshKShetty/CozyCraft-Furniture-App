@@ -120,7 +120,7 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
                     modifier = modifierPadding
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    route = NavigationItems.Login.route,
+                    route = NavigationItems.OTP.route,
                 )
 
                 ClickableText(text = annotatedStringSignUp,
