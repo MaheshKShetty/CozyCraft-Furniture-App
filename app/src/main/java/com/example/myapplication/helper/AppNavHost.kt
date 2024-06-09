@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.myapplication.login.LoginScreen
+import com.example.myapplication.otp.OTPScreen
 import com.example.myapplication.signup.SignUpScreen
 import com.example.myapplication.splash.SplashScreen
 import com.example.myapplication.welcome.WelcomeScreen
@@ -33,6 +34,9 @@ fun AppNavHost(
         }
         composable(NavigationItems.SignUp.route) {
             SignUpScreen(modifier = modifier,navHostController = navController)
+        }
+        composable(NavigationItems.OTP.route) {
+            OTPScreen(modifier = modifier,navHostController = navController)
         }
     }
 }
