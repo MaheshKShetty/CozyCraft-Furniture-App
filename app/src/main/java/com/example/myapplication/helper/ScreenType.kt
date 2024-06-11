@@ -5,5 +5,6 @@ enum class ScreenType {
     LOGIN,
     SIGNUP,
     SPLASH,
-    OTP
+    OTP,
+    INFO
 }

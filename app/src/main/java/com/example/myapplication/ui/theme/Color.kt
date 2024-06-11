@@ -21,3 +21,5 @@ val textFieldBorderColor =  Color(0xFFD3D3D6)
 val textFieldFocusedColor = Color(0xFF9ECFE0)
 val textFieldErrorColor = Color(0xFFFF0000)
 
+val GreyLight = Color(0xFFB5B6BA)
+val GreyDark = Color(0xFF60626C)

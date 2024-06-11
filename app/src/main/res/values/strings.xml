@@ -18,4 +18,6 @@
     Terms &amp; Conditions and Privacy Policy</string>
     <string name="submit">Submit</string>
     <string name="otp_desc">Enter the OTP sent to your email</string>
+    <string name="account_created_desc">Your Account created Successfully.</string>
+
 </resources>
