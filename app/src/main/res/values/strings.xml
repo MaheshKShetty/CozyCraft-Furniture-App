@@ -19,5 +19,7 @@
     <string name="submit">Submit</string>
     <string name="otp_desc">Enter the OTP sent to your email</string>
     <string name="account_created_desc">Your Account created Successfully.</string>
+    <string name="home_desc">Welcome to CozyCraft</string>
+    <string name="okay">Okay ,Got it</string>
 
 </resources>

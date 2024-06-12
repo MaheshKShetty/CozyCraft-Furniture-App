@@ -125,10 +125,10 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
 
                 ClickableText(text = annotatedStringSignUp,
                     style = MaterialTheme.typography.bodyMedium.copy(textAlign = TextAlign.Center),
-                    modifier = modifierPadding,
+                    modifier = modifierPadding.align(Alignment.CenterHorizontally),
                     onClick = { offset ->
-                        annotatedStringSignUp.getStringAnnotations(tag = "policy", start = offset, end = offset).firstOrNull()?.let {
-                            Log.d("policy URL", it.item)
+                        annotatedStringSignUp.getStringAnnotations(tag = "Login", start = offset, end = offset).firstOrNull()?.let {
+                           navHostController.navigate(NavigationItems.Login.route)
                         }
                     })
             }

@@ -75,7 +75,7 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
                     modifier = modifierPadding
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    route = NavigationItems.Login.route,
+                    route = NavigationItems.HOME.route,
                 )
             }
 

@@ -7,6 +7,7 @@ import androidx.core.splashscreen.SplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.myapplication.dashboard.HomeScreen
 import com.example.myapplication.info.InfoScreen
 import com.example.myapplication.login.LoginScreen
 import com.example.myapplication.otp.OTPScreen
@@ -41,6 +42,12 @@ fun AppNavHost(
         }
         composable(NavigationItems.INFO.route) {
             InfoScreen(modifier = modifier,navHostController = navController)
+        }
+        composable(NavigationItems.INFO.route) {
+            InfoScreen(modifier = modifier,navHostController = navController)
+        }
+        composable(NavigationItems.HOME.route) {
+            HomeScreen(modifier = modifier,navHostController = navController)
         }
     }
 }
