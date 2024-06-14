@@ -62,7 +62,6 @@ fun OTPScreen(modifier: Modifier = Modifier, navHostController: NavHostControlle
                 )
 
                 OtpTextFieldTheme {
-                    // A surface container using the 'background' color from the theme
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -84,11 +83,13 @@ fun OTPScreen(modifier: Modifier = Modifier, navHostController: NavHostControlle
 
                 CustomButton(
                     text = context.resources.getString(R.string.submit),
-                    navHostController = navHostController,
+                    onClick = {
+                        navHostController.navigate(NavigationItems.INFO.route)
+                    },
                     modifier = modifierPadding
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    route = NavigationItems.INFO.route,
+
                 )
             }
 

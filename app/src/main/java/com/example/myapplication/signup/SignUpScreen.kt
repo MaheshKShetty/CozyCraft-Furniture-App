@@ -116,11 +116,12 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
 
                 CustomButton(
                     text = context.resources.getString(R.string.login),
-                    navHostController = navHostController,
+                    onClick = {
+                        navHostController.navigate(NavigationItems.OTP.route)
+                    },
                     modifier = modifierPadding
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    route = NavigationItems.OTP.route,
                 )
 
                 ClickableText(text = annotatedStringSignUp,

@@ -15,6 +15,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
@@ -25,6 +29,7 @@ import com.example.myapplication.R
 import com.example.myapplication.custom.CustomButton
 import com.example.myapplication.custom.CustomTextField
 import com.example.myapplication.custom.CustomToolBar
+import com.example.myapplication.custom.TextFieldErrorHandler
 import com.example.myapplication.helper.NavigationItems
 import com.example.myapplication.helper.Utils
 import com.example.myapplication.ui.theme.Typography
@@ -37,6 +42,16 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
     val modifierPadding = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
 
     val context = LocalContext.current
+    var showError by remember { mutableStateOf(false) }
+    var errorMessages by remember { mutableStateOf<String?>(null) }
+
+    val errorHandler = object : TextFieldErrorHandler {
+        override fun setErrorState(isError: Boolean, errorMessage: String?) {
+            showError = isError
+            errorMessages = errorMessage
+        }
+    }
+
     Column(modifier = modifier.fillMaxSize()) {
         Scaffold(
             topBar = {
@@ -66,20 +81,21 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
                     modifier = modifierPadding,
                     label = "Password",
                     isPassword = true,
+                    errorHandler = errorHandler,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
                 )
 
                 CustomButton(
                     text = context.resources.getString(R.string.login),
-                    navHostController = navHostController,
+                    onClick =  {
+                        errorHandler.setErrorState(true, "Invalid email format")
+//                       navHostController.navigate(NavigationItems.HOME.route)
+                    },
                     modifier = modifierPadding
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    route = NavigationItems.HOME.route,
                 )
             }
-
         }
     }
-
 }

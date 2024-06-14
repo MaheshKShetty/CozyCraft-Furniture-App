@@ -14,16 +14,18 @@ import com.example.myapplication.R
 import com.example.myapplication.ui.theme.Typography
 
 @Composable
-fun CustomButton(text: String, modifier: Modifier, navHostController: NavHostController,route:String) {
-    val context = LocalContext.current
-    FilledTonalButton(modifier = modifier, colors =
-    ButtonDefaults.filledTonalButtonColors(
-        containerColor = colorResource(id = R.color.black),
-        contentColor = colorResource(id = R.color.white)
-    ),
-        onClick = {
-            navHostController.navigate(route = route)
-        }) {
+fun CustomButton(
+    text: String, modifier: Modifier,
+    onClick: () -> Unit,
+) {
+    FilledTonalButton(
+        modifier = modifier, colors =
+        ButtonDefaults.filledTonalButtonColors(
+            containerColor = colorResource(id = R.color.black),
+            contentColor = colorResource(id = R.color.white)
+        ),
+        onClick = onClick
+    ) {
         Text(
             text = text,
             style = Typography.titleLarge,
@@ -33,3 +35,5 @@ fun CustomButton(text: String, modifier: Modifier, navHostController: NavHostCon
         )
     }
 }
+
+interface on

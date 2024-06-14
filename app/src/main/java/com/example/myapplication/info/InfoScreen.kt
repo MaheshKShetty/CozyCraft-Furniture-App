@@ -63,11 +63,12 @@ fun InfoScreen(modifier: Modifier = Modifier, navHostController: NavHostControll
                 )
                 CustomButton(
                     text = context.resources.getString(R.string.okay),
-                    navHostController = navHostController,
+                    onClick = {
+                        navHostController.navigate(NavigationItems.HOME.route)
+                    },
                     modifier = modifierPadding
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    route = NavigationItems.HOME.route,
                 )
             }
 
