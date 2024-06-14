@@ -93,8 +93,9 @@ fun WelcomeScreen(navHostController: NavHostController) {
                     ) {
                         CustomButton(
                             text = context.resources.getString(R.string.signUp),
-                            navHostController = navHostController,
-                            route = NavigationItems.SignUp.route,
+                            onClick = {
+                                navHostController.navigate(NavigationItems.SignUp.route)
+                            },
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(8.dp)
@@ -106,13 +107,14 @@ fun WelcomeScreen(navHostController: NavHostController) {
                         )
                         CustomButton(
                             text = context.resources.getString(R.string.login),
-                            navHostController = navHostController,
+                            onClick = {
+                                navHostController.navigate(NavigationItems.Login.route)
+                            },
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(8.dp)
                                 .fillMaxWidth()
                                 .wrapContentHeight(),
-                            route = NavigationItems.Login.route,
                         )
                     }
                 }
