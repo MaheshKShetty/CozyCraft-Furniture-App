@@ -31,28 +31,25 @@ fun CustomTextField(
     label: String,
     isPassword: Boolean? = false,
     keyboardOptions: KeyboardOptions? = KeyboardOptions(keyboardType = KeyboardType.Text),
-    errorHandler: TextFieldErrorHandler? = null,
+    isError: Boolean,
+    errorText: String? = null,
+    onValueChange: (String) -> Unit
 ) {
     var input by remember { mutableStateOf("") }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
-    val isError by remember { mutableStateOf(false) }
-    val errorText by remember { mutableStateOf<String?>(null) }
-
-    LaunchedEffect(errorHandler) {
-        errorHandler?.setErrorState(isError, errorText)
-    }
 
     OutlinedTextField(
         value = input,
         modifier = modifier.fillMaxWidth(),
-        onValueChange = { newText ->
-            input = newText.trimStart { it == '0' }
+        onValueChange = {
+            input = it.trimStart { it == '0' }
+            onValueChange(input)
         },
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = textFieldFocusedColor,
             unfocusedBorderColor = textFieldBorderColor
         ),
-        visualTransformation = if (isPassword == true) PasswordVisualTransformation() else VisualTransformation.None,
+        visualTransformation = if (isPassword == true && !passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
         singleLine = true,
         textStyle = Typography.bodyMedium,
         keyboardOptions = keyboardOptions ?: KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -76,9 +73,4 @@ fun CustomTextField(
             }
         }
     )
-}
-
-
-interface TextFieldErrorHandler {
-    fun setErrorState(isError: Boolean, errorMessage: String? = null)
 }
