@@ -1,5 +1,6 @@
 package com.example.myapplication.otp
 
+import android.text.TextUtils
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -40,7 +41,9 @@ fun OTPScreen(modifier: Modifier = Modifier, navHostController: NavHostControlle
     val state = rememberScrollState()
     LaunchedEffect(Unit) { state.animateScrollTo(100) }
     val modifierPadding = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
-
+    var otpValue by remember {
+        mutableStateOf("")
+    }
     val context = LocalContext.current
     Column(modifier = modifier.fillMaxSize()) {
         Scaffold(
@@ -69,9 +72,7 @@ fun OTPScreen(modifier: Modifier = Modifier, navHostController: NavHostControlle
                             .padding(20.dp),
                         color = Color.White,
                     ) {
-                        var otpValue by remember {
-                            mutableStateOf("")
-                        }
+
                         CustomOtpTextField(
                             otpText = otpValue,
                             onOtpTextChange = { value, otpInputFilled ->
@@ -84,7 +85,11 @@ fun OTPScreen(modifier: Modifier = Modifier, navHostController: NavHostControlle
                 CustomButton(
                     text = context.resources.getString(R.string.submit),
                     onClick = {
-                        navHostController.navigate(NavigationItems.INFO.route)
+                        if (TextUtils.isEmpty(otpValue)) {
+
+                        } else {
+                            navHostController.navigate(NavigationItems.INFO.route)
+                        }
                     },
                     modifier = modifierPadding
                         .fillMaxWidth()

@@ -1,5 +1,6 @@
 package com.example.myapplication.login
 
+import android.provider.Settings.Global.getString
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,9 +30,11 @@ import com.example.myapplication.R
 import com.example.myapplication.custom.CustomButton
 import com.example.myapplication.custom.CustomTextField
 import com.example.myapplication.custom.CustomToolBar
-import com.example.myapplication.custom.TextFieldErrorHandler
 import com.example.myapplication.helper.NavigationItems
 import com.example.myapplication.helper.Utils
+import com.example.myapplication.helper.Utils.isValidEmail
+import com.example.myapplication.helper.Utils.isValidPassword
+import com.example.myapplication.helper.Utils.validatePassword
 import com.example.myapplication.ui.theme.Typography
 import com.example.myapplication.ui.theme.titleColor
 
@@ -42,15 +45,12 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
     val modifierPadding = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
 
     val context = LocalContext.current
-    var showError by remember { mutableStateOf(false) }
-    var errorMessages by remember { mutableStateOf<String?>(null) }
-
-    val errorHandler = object : TextFieldErrorHandler {
-        override fun setErrorState(isError: Boolean, errorMessage: String?) {
-            showError = isError
-            errorMessages = errorMessage
-        }
-    }
+    var emailError by remember { mutableStateOf(false) }
+    var emailErrorMessage by remember { mutableStateOf<String?>(null) }
+    var passwordError by remember { mutableStateOf(false) }
+    var passwordErrorMessage by remember { mutableStateOf<String?>(null) }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
     Column(modifier = modifier.fillMaxSize()) {
         Scaffold(
@@ -65,7 +65,7 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
             Column(modifier = modifier.fillMaxSize().padding(innerPadding), verticalArrangement = Arrangement.Top) {
                 Text(
                     text = context.getString(R.string.signup_desc),
-                    modifier = Modifier.padding(16.dp,16.dp,16.dp,36.dp),
+                    modifier = Modifier.padding(16.dp, 16.dp, 16.dp, 36.dp),
                     style = Typography.bodyMedium,
                     textAlign = TextAlign.Start,
                     color = titleColor
@@ -74,22 +74,44 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
                 CustomTextField(
                     modifier = modifierPadding,
                     label = "Enter your Email",
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+                    isError = emailError,
+                    errorText = emailErrorMessage,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                    onValueChange = {
+                        email = it
+                        emailError = false
+                        emailErrorMessage = null
+                    }
                 )
 
                 CustomTextField(
                     modifier = modifierPadding,
                     label = "Password",
                     isPassword = true,
-                    errorHandler = errorHandler,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                    isError = passwordError,
+                    errorText = passwordErrorMessage,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    onValueChange = {
+                        password = it
+                        passwordError = false
+                        passwordErrorMessage = null
+                    }
                 )
 
                 CustomButton(
                     text = context.resources.getString(R.string.login),
                     onClick =  {
-                        errorHandler.setErrorState(true, "Invalid email format")
-//                       navHostController.navigate(NavigationItems.HOME.route)
+                        if (!isValidEmail(email)) {
+                            emailError = true
+                            emailErrorMessage = context.resources.getString(R.string.email_error)
+                        }
+                        if (!isValidPassword(password)) {
+                            passwordError = true
+                            passwordErrorMessage = validatePassword(password)
+                        }
+                        if (!emailError && !passwordError) {
+                            navHostController.navigate(NavigationItems.HOME.route)
+                        }
                     },
                     modifier = modifierPadding
                         .fillMaxWidth()

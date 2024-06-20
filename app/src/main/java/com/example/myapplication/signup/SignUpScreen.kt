@@ -19,6 +19,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,8 +46,10 @@ import com.example.myapplication.custom.CustomButton
 import com.example.myapplication.custom.CustomTextField
 import com.example.myapplication.custom.CustomToolBar
 import com.example.myapplication.helper.NavigationItems
+import com.example.myapplication.helper.Utils
 import com.example.myapplication.helper.Utils.annotatedString
 import com.example.myapplication.helper.Utils.annotatedStringSignUp
+import com.example.myapplication.helper.Utils.isValidFirstName
 import com.example.myapplication.ui.theme.Typography
 import com.example.myapplication.ui.theme.lightGrey
 import com.example.myapplication.ui.theme.titleColor
@@ -54,6 +60,22 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
     val state = rememberScrollState()
 
     val modifierPadding = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
+    var fullNameError by remember { mutableStateOf(false) }
+    var fullNameErrorMessage by remember { mutableStateOf<String?>(null) }
+    var fullName by remember { mutableStateOf<String?>(null) }
+
+    var emailError by remember { mutableStateOf(false) }
+    var emailErrorMessage by remember { mutableStateOf<String?>(null) }
+    var email by remember { mutableStateOf<String?>(null) }
+
+    var passwordError by remember { mutableStateOf(false) }
+    var passwordErrorMessage by remember { mutableStateOf<String?>(null) }
+    var password by remember { mutableStateOf<String?>(null) }
+
+    var confirmPasswordError by remember { mutableStateOf(false) }
+    var confirmPasswordErrorMessage by remember { mutableStateOf<String?>(null) }
+    var confirmPassword by remember { mutableStateOf<String?>(null) }
+
 
     LaunchedEffect(Unit) { state.animateScrollTo(100) }
     val context = LocalContext.current
@@ -78,26 +100,54 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
                 CustomTextField(
                     modifier = modifierPadding,
                     label = "Full Name ",
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                    isError = fullNameError,
+                    errorText = fullNameErrorMessage,
+                    onValueChange = {
+                        fullNameError =  false
+                        fullNameErrorMessage = null
+                        fullName = it
+                    }
                 )
 
                 CustomTextField(
                     modifier = modifierPadding,
                     label = "Enter your Email",
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                    isError = emailError,
+                    errorText = emailErrorMessage,
+                    onValueChange = {
+                        emailError =  false
+                        emailErrorMessage = null
+                        email = it
+                    }
                 )
 
                 CustomTextField(
                     modifier = modifierPadding,
                     label = "Password",
                     isPassword = true,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    isError = passwordError,
+                    errorText = passwordErrorMessage,
+                    onValueChange = {
+                        passwordError =  false
+                        passwordErrorMessage = null
+                        password = it
+                    }
                 )
 
                 CustomTextField(
                     modifier = modifierPadding,
                     label = "Confirm Password",
                     isPassword = true,
+                    isError = confirmPasswordError,
+                    errorText = confirmPasswordErrorMessage,
+                    onValueChange = {
+                        confirmPasswordError =  false
+                        confirmPasswordErrorMessage = null
+                        confirmPassword = it
+                    },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
                 )
 
@@ -117,7 +167,25 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
                 CustomButton(
                     text = context.resources.getString(R.string.login),
                     onClick = {
-                        navHostController.navigate(NavigationItems.OTP.route)
+                        if (isValidFirstName(fullName?:"") != null || fullName == "") {
+                            fullNameError = true
+                            fullNameErrorMessage = isValidFirstName(fullName ?:"")
+                        }
+                        if (!Utils.isValidEmail(email ?:"")) {
+                            emailError = true
+                            emailErrorMessage = context.resources.getString(R.string.email_error)
+                        }
+                        if (!Utils.isValidPassword(password?:"")) {
+                            passwordError = true
+                            passwordErrorMessage =  Utils.validatePassword(password ?: "")
+                        }
+                        if (password != confirmPassword) {
+                            confirmPasswordError = true
+                            confirmPasswordErrorMessage = context.resources.getString(R.string.confirm_password_error)
+                        }
+                        if (!fullNameError && !emailError && !passwordError && !confirmPasswordError) {
+                            navHostController.navigate(NavigationItems.OTP.route)
+                        }
                     },
                     modifier = modifierPadding
                         .fillMaxWidth()
