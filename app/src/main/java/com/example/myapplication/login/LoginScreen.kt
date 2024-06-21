@@ -1,7 +1,5 @@
 package com.example.myapplication.login
 
-import android.provider.Settings.Global.getString
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,9 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,10 +27,11 @@ import com.example.myapplication.custom.CustomButton
 import com.example.myapplication.custom.CustomTextField
 import com.example.myapplication.custom.CustomToolBar
 import com.example.myapplication.helper.NavigationItems
-import com.example.myapplication.helper.Utils
+import com.example.myapplication.preferences.PrefHelper
 import com.example.myapplication.helper.Utils.isValidEmail
 import com.example.myapplication.helper.Utils.isValidPassword
 import com.example.myapplication.helper.Utils.validatePassword
+import com.example.myapplication.preferences.PrefConstant.IS_LOGGED_IN
 import com.example.myapplication.ui.theme.Typography
 import com.example.myapplication.ui.theme.titleColor
 
@@ -110,6 +107,7 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
                             passwordErrorMessage = validatePassword(password)
                         }
                         if (!emailError && !passwordError) {
+                            PrefHelper.getInstance(context)?.putBoolean(IS_LOGGED_IN,true)
                             navHostController.navigate(NavigationItems.HOME.route)
                         }
                     },

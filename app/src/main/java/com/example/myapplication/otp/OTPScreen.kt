@@ -35,6 +35,7 @@ import com.example.myapplication.helper.NavigationItems
 import com.example.myapplication.ui.theme.OtpTextFieldTheme
 import com.example.myapplication.ui.theme.Typography
 import com.example.myapplication.ui.theme.titleColor
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun OTPScreen(modifier: Modifier = Modifier, navHostController: NavHostController) {
