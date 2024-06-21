@@ -100,7 +100,7 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
                 CustomTextField(
                     modifier = modifierPadding,
                     label = "Full Name ",
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                     isError = fullNameError,
                     errorText = fullNameErrorMessage,
                     onValueChange = {

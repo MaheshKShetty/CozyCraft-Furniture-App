@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.helper.AppNavHost
+import com.example.myapplication.helper.NavigationItems
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,7 +37,9 @@ class MainActivity : ComponentActivity() {
                     AppNavHost(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .fillMaxHeight(), navController = rememberNavController()
+                            .fillMaxHeight(),
+                        startDestination = NavigationItems.Splash.route,
+                        navController = rememberNavController()
                     )
                 }
             }
