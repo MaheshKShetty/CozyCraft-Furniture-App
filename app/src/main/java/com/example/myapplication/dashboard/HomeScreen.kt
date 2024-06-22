@@ -31,32 +31,19 @@ fun HomeScreen(modifier: Modifier = Modifier, navHostController: NavHostControll
 
     val context = LocalContext.current
     Column(modifier = modifier.fillMaxSize()) {
-        Scaffold(
-            topBar = {
-                CustomToolBar(
-                    navHostController = navHostController,
-                    modifier = modifier,
-                    title = "Home"
-                )
-            }
-        ) { innerPadding ->
-            Column(modifier = modifier.fillMaxSize().padding(innerPadding), verticalArrangement = Arrangement.Center) {
-
-                Image(
-                    painter = painterResource(id = R.drawable.ic_info),
-                    contentDescription = "App Logo",
-                    modifier = Modifier.width(200.dp).align(Alignment.CenterHorizontally).height(200.dp)
-                )
-
-                Text(
-                    text = context.getString(R.string.home_desc),
-                    modifier = Modifier.padding(16.dp,16.dp,16.dp,16.dp).align(Alignment.CenterHorizontally),
-                    style = Typography.bodyMedium,
-                    textAlign = TextAlign.Start,
-                    color = titleColor,
-                )
-            }
-
+        Column(modifier = modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.Center) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_info),
+                contentDescription = "App Logo",
+                modifier = Modifier.width(200.dp).align(Alignment.CenterHorizontally).height(200.dp)
+            )
+            Text(
+                text = context.getString(R.string.home_desc),
+                modifier = Modifier.padding(16.dp,16.dp,16.dp,16.dp).align(Alignment.CenterHorizontally),
+                style = Typography.bodyMedium,
+                textAlign = TextAlign.Start,
+                color = titleColor,
+            )
         }
     }
 }

@@ -13,19 +13,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import com.example.myapplication.R
 import com.example.myapplication.helper.NavigationItems
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import com.example.myapplication.preferences.PrefConstant
 import com.example.myapplication.preferences.PrefHelper
 import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navController: NavHostController) {
-    val context = LocalContext?.current
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()

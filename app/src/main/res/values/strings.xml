@@ -9,6 +9,7 @@
 
     <string name="login">Login</string>
     <string name="signUp">SignUp</string>
+    <string name="otp">OTP</string>
     <string name="signup_desc">Create Your CozyCraft Account | Join the Fun</string>
     <string name="login_subtitle">CozyCraft Login | Welcome Back</string>
 

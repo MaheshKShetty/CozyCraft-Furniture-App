@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -56,10 +57,10 @@ fun OTPScreen(modifier: Modifier = Modifier, navHostController: NavHostControlle
                 )
             }
         ) { innerPadding ->
-            Column(modifier = modifier.fillMaxSize().padding(innerPadding), verticalArrangement = Arrangement.Top) {
+            Column(modifier = modifier.fillMaxSize().padding(innerPadding)) {
                 Text(
                     text = context.getString(R.string.otp_desc),
-                    modifier = Modifier.padding(16.dp,16.dp,16.dp,56.dp),
+                    modifier = Modifier.padding(16.dp,26.dp,16.dp,56.dp),
                     style = Typography.bodyMedium,
                     textAlign = TextAlign.Start,
                     color = titleColor
@@ -70,7 +71,7 @@ fun OTPScreen(modifier: Modifier = Modifier, navHostController: NavHostControlle
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(Color.White)
-                            .padding(20.dp),
+                            .padding(16.dp),
                         color = Color.White,
                     ) {
 
@@ -92,6 +93,7 @@ fun OTPScreen(modifier: Modifier = Modifier, navHostController: NavHostControlle
                             navHostController.navigate(NavigationItems.INFO.route)
                         }
                     },
+                    enabled = otpValue.length == 6,
                     modifier = modifierPadding
                         .fillMaxWidth()
                         .wrapContentHeight(),
