@@ -28,7 +28,7 @@ import com.example.myapplication.ui.theme.Typography
 import com.example.myapplication.ui.theme.titleColor
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun ProfileScreen(modifier: Modifier = Modifier) {
     val state = rememberScrollState()
     LaunchedEffect(Unit) { state.animateScrollTo(100) }
 
@@ -36,7 +36,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxSize()) {
         Column(modifier = modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.Center) {
             Image(
-                imageVector = Icons.Filled.Home,
+                imageVector = Icons.Filled.Search,
                 contentDescription = "App Logo",
                 modifier = Modifier.width(200.dp).align(Alignment.CenterHorizontally).height(200.dp)
             )
