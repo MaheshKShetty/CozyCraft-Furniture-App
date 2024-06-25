@@ -25,5 +25,6 @@
 
     <string name="email_error">Please enter a valid email address.</string>
     <string name="confirm_password_error">Password and confirmation password do not match.</string>
+    <string name="title_activity_dash_board">DashBoardActivity</string>
 
 </resources>
