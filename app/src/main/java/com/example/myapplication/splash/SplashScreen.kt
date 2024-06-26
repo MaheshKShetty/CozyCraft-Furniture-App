@@ -12,9 +12,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import com.example.myapplication.helper.NavigationItems
 import androidx.compose.ui.platform.LocalContext
+import com.example.myapplication.animation.ComposeLottieScreen
 import com.example.myapplication.preferences.PrefConstant
 import com.example.myapplication.preferences.PrefHelper
 import kotlinx.coroutines.delay
@@ -25,11 +27,12 @@ fun SplashScreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .fillMaxHeight()
+            .background(Color.Black)
     ) {
+        ComposeLottieScreen()
         LaunchedEffect(Unit) {
-            delay(1000)
-
+            delay(2000)
             if (PrefHelper.getInstance(context)?.getBoolean(PrefConstant.IS_LOGGED_IN) == true) {
                 navController.navigate(NavigationItems.HOME.route)
             } else {
