@@ -1,9 +1,15 @@
 package com.example.myapplication.helper
 
+import android.content.Context
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
+import com.example.myapplication.R
+import com.example.myapplication.data.HomeResponseItem
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.nio.charset.StandardCharsets
 
 object Utils {
     val annotatedString = buildAnnotatedString {
@@ -63,5 +69,12 @@ object Utils {
         val firstNamePattern = "^[A-Z][a-zA-Z]{1,49}$"
         return if (firstName.matches(firstNamePattern.toRegex())) null
         else "First name must start with an uppercase letter and contain only alphabetic characters. It should be between 2 and 50 characters long."
+    }
+
+    fun  readJsonFromRaw(context: Context): List<HomeResponseItem> {
+        val inputStream = context.resources.openRawResource(R.raw.homescreen)
+        val jsonString = inputStream.bufferedReader().use { it.readText() }
+        val listType = object : TypeToken<List<HomeResponseItem>>() {}.type
+        return Gson().fromJson(jsonString, listType)
     }
 }
