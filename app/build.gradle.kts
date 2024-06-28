@@ -82,5 +82,5 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.lottie.compose)
-
+    implementation(libs.gson)
 }

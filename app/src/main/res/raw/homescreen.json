@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "Modern Sofa Set",
+    "description": "A stylish and comfortable sofa set suitable for modern interiors.",
+    "date": "2024-06-26",
+    "imageUrl": "https://i.ibb.co/3pxV3zb/realistic-interior-design-with-furniture.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Vintage Oak Dining Table",
+    "description": "A beautifully crafted oak dining table with a vintage design.",
+    "date": "2024-06-27",
+    "imageUrl": "https://i.ibb.co/3pxV3zb/realistic-interior-design-with-furniture.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Contemporary Office Chair",
+    "description": "Ergonomic office chair designed for comfort during long work hours.",
+    "date": "2024-06-28",
+    "imageUrl": "https://i.ibb.co/3pxV3zb/realistic-interior-design-with-furniture.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Rustic Wooden Bed Frame",
+    "description": "Sturdy wooden bed frame with a rustic finish, perfect for cozy bedrooms.",
+    "date": "2024-06-29",
+    "imageUrl": "https://i.ibb.co/3pxV3zb/realistic-interior-design-with-furniture.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Modern Glass Coffee Table",
+    "description": "Sleek glass coffee table with a minimalist design, ideal for contemporary living rooms.",
+    "date": "2024-06-30",
+    "imageUrl": "https://i.ibb.co/3pxV3zb/realistic-interior-design-with-furniture.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Antique Wooden Sideboard",
+    "description": "Antique wooden sideboard with intricate carvings, adding charm to any dining area.",
+    "date": "2024-07-01",
+    "imageUrl": "https://i.ibb.co/3pxV3zb/realistic-interior-design-with-furniture.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Leather Recliner Armchair",
+    "description": "Luxurious leather recliner armchair, offering comfort and style for relaxation.",
+    "date": "2024-07-02",
+    "imageUrl": "https://i.ibb.co/3pxV3zb/realistic-interior-design-with-furniture.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Industrial Style Bookshelf",
+    "description": "Industrial-style bookshelf made from metal and reclaimed wood, perfect for loft apartments.",
+    "date": "2024-07-03",
+    "imageUrl": "https://i.ibb.co/3pxV3zb/realistic-interior-design-with-furniture.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Mid-Century Modern Armchair",
+    "description": "Iconic mid-century modern armchair with a timeless design, ideal for retro-themed interiors.",
+    "date": "2024-07-04",
+    "imageUrl": "https://i.ibb.co/3pxV3zb/realistic-interior-design-with-furniture.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Glass Top Dining Table Set",
+    "description": "Elegant dining table set with a glass top and upholstered chairs, perfect for formal dining rooms.",
+    "date": "2024-07-05",
+    "imageUrl": "https://i.ibb.co/3pxV3zb/realistic-interior-design-with-furniture.jpg"
+  }
+]
