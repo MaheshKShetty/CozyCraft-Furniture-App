@@ -7,6 +7,7 @@
 
     <style name="Theme.AnimatedSplashScreen" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/black</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="Theme.MyApplication" parent="android:Theme.Material.Light.NoActionBar" />
