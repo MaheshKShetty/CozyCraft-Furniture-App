@@ -46,12 +46,12 @@ fun SplashScreen(navController: NavHostController) {
             painter = painterResource(id = R.drawable.ic_splash),
             contentDescription = "Profile Icon",
             modifier = Modifier
-                .size(300.dp)
+                .size(200.dp)
                 .clip(CircleShape)
         )
     }
     LaunchedEffect(Unit) {
-        delay(2000)
+        delay(4000)
         if (PrefHelper.getInstance(context)?.getBoolean(PrefConstant.IS_LOGGED_IN) == true) {
             navController.navigate(NavigationItems.HOME.route)
         } else {
