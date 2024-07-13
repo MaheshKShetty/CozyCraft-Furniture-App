@@ -1,15 +1,17 @@
 package com.example.myapplication.dashboard
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -22,35 +24,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.myapplication.data.HomeResponseItem
-import com.example.myapplication.helper.Utils
 import com.example.myapplication.ui.theme.Typography
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    val furnitureList = Utils.readJsonFromRaw(context)
-
-    LazyColumn(modifier = modifier.fillMaxSize().padding(16.dp)) {
-        items(furnitureList) { furnitureItem ->
-            FurnitureCard(furnitureItem)
-        }
-    }
+fun HomeDetailScreen(item: HomeResponseItem) {
+    FurnitureDetailsScreen(item)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FurnitureCard(furnitureItem: HomeResponseItem) {
-    var isFavorite by remember { mutableStateOf(false)}
+fun FurnitureDetailsScreen(furnitureItem: HomeResponseItem) {
+    var isFavorite by remember { mutableStateOf(false) }
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        onClick = { } ,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)) {
         Column(modifier = Modifier.fillMaxWidth()) {
