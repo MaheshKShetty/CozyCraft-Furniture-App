@@ -32,7 +32,7 @@ import com.example.myapplication.custom.CustomButton
 import com.example.myapplication.custom.CustomOtpTextField
 import com.example.myapplication.custom.CustomTextField
 import com.example.myapplication.custom.CustomToolBar
-import com.example.myapplication.helper.NavigationItems
+import com.example.myapplication.navigation.login.NavigationItems
 import com.example.myapplication.ui.theme.OtpTextFieldTheme
 import com.example.myapplication.ui.theme.Typography
 import com.example.myapplication.ui.theme.titleColor

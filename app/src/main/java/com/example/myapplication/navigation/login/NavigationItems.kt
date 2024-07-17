@@ -9,6 +9,7 @@ sealed class NavigationItems(val route: String) {
     data object OTP : NavigationItems(ScreenType.OTP.name)
     data object INFO : NavigationItems(ScreenType.INFO.name)
     data object HOME : NavigationItems(ScreenType.HOME.name)
+    data object WEBVIEW : NavigationItems(ScreenType.WEBVIEW.name)
 
 
 }
