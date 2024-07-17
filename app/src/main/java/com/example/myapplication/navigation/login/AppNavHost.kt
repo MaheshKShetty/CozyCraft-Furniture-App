@@ -13,6 +13,7 @@ import com.example.myapplication.login.LoginScreen
 import com.example.myapplication.otp.OTPScreen
 import com.example.myapplication.signup.SignUpScreen
 import com.example.myapplication.splash.SplashScreen
+import com.example.myapplication.webview.WebView
 import com.example.myapplication.welcome.WelcomeScreen
 
 @Composable
@@ -43,13 +44,14 @@ fun AppNavHost(
         composable(NavigationItems.INFO.route) {
             InfoScreen(modifier = modifier,navHostController = navController)
         }
-        composable(NavigationItems.INFO.route) {
-            InfoScreen(modifier = modifier,navHostController = navController)
-        }
+
         composable(NavigationItems.HOME.route) {
             val intent = Intent(LocalContext.current, DashBoardActivity::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             LocalContext.current.startActivity(intent)
+        }
+        composable(NavigationItems.WEBVIEW.route) {
+            WebView(modifier = modifier,navHostController = navController)
         }
     }
 }

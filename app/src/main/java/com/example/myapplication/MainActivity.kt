@@ -1,4 +1,4 @@
-package com.cap.myapplication
+package com.example.myapplication
 
 import android.os.Build
 import android.os.Bundle
@@ -18,8 +18,8 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
-import com.example.myapplication.helper.AppNavHost
-import com.example.myapplication.helper.NavigationItems
+import com.example.myapplication.navigation.login.AppNavHost
+import com.example.myapplication.navigation.login.NavigationItems
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {

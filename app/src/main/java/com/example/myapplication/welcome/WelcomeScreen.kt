@@ -38,7 +38,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.myapplication.R
 import com.example.myapplication.custom.CustomButton
-import com.example.myapplication.helper.NavigationItems
+import com.example.myapplication.navigation.login.NavigationItems
 import com.example.myapplication.ui.theme.Typography
 
 @Composable

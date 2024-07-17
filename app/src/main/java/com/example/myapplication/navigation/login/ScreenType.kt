@@ -7,5 +7,6 @@ enum class ScreenType {
     SPLASH,
     OTP,
     INFO,
-    HOME
+    HOME,
+    WEBVIEW
 }

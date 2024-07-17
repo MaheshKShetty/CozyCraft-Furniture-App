@@ -45,11 +45,11 @@ import com.example.myapplication.R
 import com.example.myapplication.custom.CustomButton
 import com.example.myapplication.custom.CustomTextField
 import com.example.myapplication.custom.CustomToolBar
-import com.example.myapplication.helper.NavigationItems
 import com.example.myapplication.helper.Utils
 import com.example.myapplication.helper.Utils.annotatedString
 import com.example.myapplication.helper.Utils.annotatedStringSignUp
 import com.example.myapplication.helper.Utils.isValidFirstName
+import com.example.myapplication.navigation.login.NavigationItems
 import com.example.myapplication.ui.theme.Typography
 import com.example.myapplication.ui.theme.lightGrey
 import com.example.myapplication.ui.theme.titleColor
@@ -156,11 +156,12 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
                     modifier = modifierPadding,
                     onClick = { offset ->
                     annotatedString.getStringAnnotations(tag = "policy", start = offset, end = offset).firstOrNull()?.let {
-                        Log.d("policy URL", it.item)
+                        navHostController.navigate(NavigationItems.WEBVIEW.route)
                     }
 
                     annotatedString.getStringAnnotations(tag = "terms", start = offset, end = offset).firstOrNull()?.let {
                         Log.d("terms URL", it.item)
+                        navHostController.navigate(NavigationItems.WEBVIEW.route)
                     }
                 })
 
