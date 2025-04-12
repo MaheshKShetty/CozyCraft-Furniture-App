@@ -16,11 +16,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -30,7 +28,6 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -106,7 +103,7 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                                 "Delete Account" -> Icons.Filled.Delete
                                  "Contact Us"  -> Icons.Filled.Call
                                 "Terms and Conditions" -> Icons.Filled.Warning
-                                "Logout" -> Icons.Filled.ExitToApp
+                                "Logout" -> Icons.AutoMirrored.Filled.ExitToApp
                                 else -> Icons.Filled.AddCircle},
                             contentDescription = item,
                             modifier = Modifier.size(24.dp)
@@ -121,7 +118,7 @@ fun ProfileScreen(modifier: Modifier = Modifier) {
                         )
 
                         Icon(
-                            imageVector = Icons.Filled.ArrowForward,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                             contentDescription = "Go to $item",
                             modifier = Modifier.size(24.dp)
                         )
