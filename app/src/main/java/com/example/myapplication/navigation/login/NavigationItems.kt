@@ -2,7 +2,6 @@ package com.example.myapplication.navigation.login
 
 sealed class NavigationItems(val route: String) {
     data object Splash : NavigationItems(ScreenType.SPLASH.name)
-
     data object Welcome : NavigationItems(ScreenType.WELCOME.name)
     data object Login : NavigationItems(ScreenType.LOGIN.name)
     data object SignUp : NavigationItems(ScreenType.SIGNUP.name)

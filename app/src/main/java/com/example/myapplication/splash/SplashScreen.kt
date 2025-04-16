@@ -33,7 +33,17 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(navController: NavHostController) {
+
     val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        delay(4000)
+        if (PrefHelper.getInstance(context)?.getBoolean(PrefConstant.IS_LOGGED_IN) == true) {
+            navController.navigate(NavigationItems.HOME.route)
+        } else {
+            navController.navigate(NavigationItems.Welcome.route)
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -49,13 +59,5 @@ fun SplashScreen(navController: NavHostController) {
                 .size(200.dp)
                 .clip(CircleShape)
         )
-    }
-    LaunchedEffect(Unit) {
-        delay(4000)
-        if (PrefHelper.getInstance(context)?.getBoolean(PrefConstant.IS_LOGGED_IN) == true) {
-            navController.navigate(NavigationItems.HOME.route)
-        } else {
-            navController.navigate(NavigationItems.Welcome.route)
-        }
     }
 }
