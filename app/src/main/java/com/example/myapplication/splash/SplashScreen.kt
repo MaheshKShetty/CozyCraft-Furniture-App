@@ -19,13 +19,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.R
-import com.example.myapplication.animation.ComposeLottieScreen
 import com.example.myapplication.navigation.login.NavigationItems
 import com.example.myapplication.preferences.PrefConstant
 import com.example.myapplication.preferences.PrefHelper
