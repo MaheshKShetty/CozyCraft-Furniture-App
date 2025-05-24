@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.myapplication.R
 import com.example.myapplication.custom.CustomButton
@@ -32,8 +33,11 @@ import com.example.myapplication.helper.Utils.isValidPassword
 import com.example.myapplication.helper.Utils.validatePassword
 import com.example.myapplication.navigation.login.NavigationItems
 import com.example.myapplication.preferences.PrefConstant.IS_LOGGED_IN
+import com.example.myapplication.signup.LoginViewModel
 import com.example.myapplication.ui.theme.Typography
 import com.example.myapplication.ui.theme.titleColor
+import androidx.compose.runtime.livedata.observeAsState
+
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostController) {
@@ -48,6 +52,8 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
     var passwordErrorMessage by remember { mutableStateOf<String?>(null) }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val viewModel: LoginViewModel = viewModel()
+    val user by viewModel.user.observeAsState()
 
     Column(modifier = modifier.fillMaxSize()) {
         Scaffold(
@@ -107,8 +113,11 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
                             passwordErrorMessage = validatePassword(password)
                         }
                         if (!emailError && !passwordError) {
-                            PrefHelper.getInstance(context)?.putBoolean(IS_LOGGED_IN,true)
-                            navHostController.navigate(NavigationItems.HOME.route)
+                            viewModel.getUserInfo(email)
+                            if (user?.email == email){
+                                PrefHelper.getInstance(context)?.putBoolean(IS_LOGGED_IN,true)
+                                navHostController.navigate(NavigationItems.HOME.route)
+                            }
                         }
                     },
                     modifier = modifierPadding

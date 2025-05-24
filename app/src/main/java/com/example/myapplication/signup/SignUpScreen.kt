@@ -40,11 +40,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.myapplication.R
 import com.example.myapplication.custom.CustomButton
 import com.example.myapplication.custom.CustomTextField
 import com.example.myapplication.custom.CustomToolBar
+import com.example.myapplication.data.User
 import com.example.myapplication.helper.Utils
 import com.example.myapplication.helper.Utils.annotatedString
 import com.example.myapplication.helper.Utils.annotatedStringSignUp
@@ -75,7 +77,7 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
     var confirmPasswordError by remember { mutableStateOf(false) }
     var confirmPasswordErrorMessage by remember { mutableStateOf<String?>(null) }
     var confirmPassword by remember { mutableStateOf<String?>(null) }
-
+    val viewModel: LoginViewModel = viewModel()
 
     LaunchedEffect(Unit) { state.animateScrollTo(100) }
     val context = LocalContext.current
@@ -185,6 +187,14 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
                             confirmPasswordErrorMessage = context.resources.getString(R.string.confirm_password_error)
                         }
                         if (!fullNameError && !emailError && !passwordError && !confirmPasswordError) {
+                            var user = User(firstName = fullName.toString(),
+                                middleName = fullName.toString(),
+                                LastName = fullName.toString(),
+                                password = password.toString(),
+                                dob = "",
+                                address = "",
+                                email = email.toString())
+                            viewModel.storeUserData(user)
                             navHostController.navigate(NavigationItems.OTP.route)
                         }
                     },
