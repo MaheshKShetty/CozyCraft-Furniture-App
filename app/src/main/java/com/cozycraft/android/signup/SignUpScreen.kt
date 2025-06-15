@@ -67,7 +67,7 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
 
     LaunchedEffect(signupSuccess) {
         if (signupSuccess) {
-            navHostController.navigate(NavigationItems.OTP.route)
+            navHostController.navigate(NavigationItems.HOME.route)
         }
     }
 

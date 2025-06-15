@@ -10,7 +10,6 @@ import androidx.navigation.compose.composable
 import com.cozycraft.android.dashboard.DashBoardActivity
 import com.cozycraft.android.info.InfoScreen
 import com.cozycraft.android.login.LoginScreen
-import com.cozycraft.android.otp.OTPScreen
 import com.cozycraft.android.signup.SignUpScreen
 import com.cozycraft.android.splash.SplashScreen
 import com.cozycraft.android.webview.WebView
@@ -37,9 +36,6 @@ fun AppNavHost(
         }
         composable(NavigationItems.SignUp.route) {
             SignUpScreen(modifier = modifier, navHostController = navController)
-        }
-        composable(NavigationItems.OTP.route) {
-            OTPScreen(modifier = modifier, navHostController = navController)
         }
         composable(NavigationItems.INFO.route) {
             InfoScreen(modifier = modifier, navHostController = navController)
