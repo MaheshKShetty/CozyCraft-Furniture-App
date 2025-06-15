@@ -13,6 +13,6 @@ interface UserDao {
     suspend fun insertToUserDB(user: User) : Long
 
     @Query("SELECT * FROM user WHERE email IN (:emailId)")
-    fun getUserInfo(emailId: String): User
+    fun getUserInfo(emailId: String): User?
 
 }

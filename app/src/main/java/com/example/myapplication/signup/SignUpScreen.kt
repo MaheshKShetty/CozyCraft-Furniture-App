@@ -19,7 +19,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -78,8 +80,17 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
     var confirmPasswordErrorMessage by remember { mutableStateOf<String?>(null) }
     var confirmPassword by remember { mutableStateOf<String?>(null) }
     val viewModel: LoginViewModel = viewModel()
+    val errorMessge by viewModel.errorMessage.collectAsState()
+    val signupSuccess by viewModel.signupSuccess.collectAsState()
 
     LaunchedEffect(Unit) { state.animateScrollTo(100) }
+
+    LaunchedEffect(signupSuccess) {
+        if (signupSuccess) {
+            navHostController.navigate(NavigationItems.OTP.route)
+        }
+    }
+
     val context = LocalContext.current
     Column(modifier = modifier.fillMaxSize()) {
         Scaffold(
@@ -195,7 +206,6 @@ fun SignUpScreen(modifier: Modifier = Modifier, navHostController: NavHostContro
                                 address = "",
                                 email = email.toString())
                             viewModel.storeUserData(user)
-                            navHostController.navigate(NavigationItems.OTP.route)
                         }
                     },
                     modifier = modifierPadding

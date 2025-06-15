@@ -53,7 +53,7 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val viewModel: LoginViewModel = viewModel()
-    val user by viewModel.user.observeAsState()
+    val user by viewModel.userLiveData.observeAsState()
 
     Column(modifier = modifier.fillMaxSize()) {
         Scaffold(
